@@ -16,6 +16,12 @@ def linear_search(number, list):
     :rtype: integer
     """
 
+    index = 0
+    for i in list:
+        if i == number:
+            print('comparisons:', index + 1)
+            return index
+        index += 1
     return None
 
 
@@ -31,8 +37,24 @@ def binary_search(number, list):
     :return: Index of the element or None
     :rtype: integer
     """
-
-    return None
+    count = 0
+    list2 = list[:]
+    while len(list) > 1:
+        count += 1
+        mid = len(list)//2
+        index = list2.index(list[mid])
+        if list[mid] < number:
+            list = list[mid:]
+        elif list[mid] > number:
+            list = list[:mid]
+        else:
+            print('comparisons: ', count)
+            return index
+    if list[0] == number:
+        index = list2.index(list[0])
+        return index
+    else:
+        return None
 
 
 def print_results(search, index):
